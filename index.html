@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
     <script src="https://kit.fontawesome.com/63199c144b.js" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
     <title>Timer</title>
 </head>
 <body>
@@ -19,11 +20,11 @@
     </header>
     <main>
         <section class="main-section">
-            <h1 class="main-section__title">Cronometre</h1>
-            <p class="main-section__time"> <span class="main-section__minutes">00</span> : <span class="main-section__seconds">00</span> </p>
+            <h1 class="main-section__title">chronometer</h1>
+            <p class="main-section__time"><span id="minutes">00</span>:<span id="seconds">00</span></p>
             <div class="main-section__buttons-box">
-                <button class="main-section__buttons">Start</button>
-                <button class="main-section__buttons">Stop</button>
+                <button onclick="starChronometer()" class="main-section__buttons">Start</button>
+                <button onclick="stopChronometer()" class="main-section__buttons">Stop</button>
             </div>
         </section>
     </main>
