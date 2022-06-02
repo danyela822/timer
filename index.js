@@ -1,9 +1,4 @@
-//Se ejecuta despues de cierto tiempo y solo una vez
-// setTimeout(() => {
-//     console.log("Se borro el interval");
-//     clearInterval(myInterval);
-// }, 3000);
-
+//Seccion que contiene el cronometro, el temporizador y el pomodoro
 let section = document.querySelector("#section");
 
 //valor actual del intervalo
@@ -19,9 +14,11 @@ let secondsValue = 0;
 //valor de los minutos
 let minutesValue = 0;
 
+//valor de boton (Presionado - No presionado)
 let currentButton;
 
-let timerButton = document.querySelector("#timer-button");
+
+//-------------------------------------------------------- Cronometro ----------------------------------------------------------//
 
 function starChronometer(){
 
@@ -44,15 +41,6 @@ function starChronometer(){
     },100);
 }
 
-function formatValue(value){
-    if(value > 9){
-        return value
-    }
-    else{
-        return "0"+value;
-    }
-}
-
 function stopChronometer() {     
     clearInterval(currentInterval);
     
@@ -67,6 +55,10 @@ function resetChronometer(){
     secondsSpan.textContent = "00";
     minutesSpan.textContent = "00";
 }
+
+//------------------------------------------------------ Temporizador -------------------------------------------------------------//
+
+let timerButton = document.querySelector("#timer-button");
 
 function exucuteTimer(){
     
@@ -106,4 +98,15 @@ function startTimer(){
         minutesSpan.textContent = formatValue(minutesValue);
         secondsSpan.textContent = formatValue(secondsValue);
     },1000)
+}
+
+//------------------------------------------------------------ Formatos -----------------------------------------------------------//
+
+function formatValue(value){
+    if(value > 9){
+        return value
+    }
+    else{
+        return "0"+value;
+    }
 }
