@@ -13,13 +13,13 @@
 </head>
 <body>
     <header>
-        <button class="header-button"><i class="fa-solid fa-clock"></i></button>
-        <button class="header-button"><i class="fa-solid fa-hourglass"></i></button>
+        <button class="header-button" id="chronometer-button"><i class="fa-solid fa-clock"></i></button>
+        <button class="header-button" id="timer-button" onclick="exucuteTimer()"><i class="fa-solid fa-hourglass"></i></button>
         <button class="header-button"><i class="fa-solid fa-bell"></i></button>
     </header>
     <main>
-        <section class="main-section">
-            <h1 class="main-section__title">chronometer</h1>
+        <section class="main-section" id="section">
+            <h1 class="main-section__title" id="title">chronometer</h1>
             <p class="main-section__time"><span id="minutes">00</span>:<span id="seconds">00</span></p>
             <div class="main-section__buttons-box">
                 <button onclick="starChronometer()" class="main-section__buttons">Start</button>
