@@ -20,7 +20,24 @@ let currentButton;
 
 //-------------------------------------------------------- Cronometro ----------------------------------------------------------//
 
-function starChronometer(){
+//boton para activar el cronometro
+let chronometerButton = document.querySelector("#chronometer-button");
+
+function exucuteChronometer(){
+    
+    section.innerHTML = 
+        `<h1 class="main-section__title" id="title">chronometer</h1>
+        <p class="main-section__time"><span id="minutes">00</span>:<span id="seconds">00</span></p>
+        <div class="main-section__buttons-box">
+            <button onclick="startChronometer()" class="main-section__buttons">Start</button>
+            <button onclick="stopChronometer()" class="main-section__buttons">Stop</button>
+            <button onclick="resetChronometer()" class="main-section__buttons">Reset</button>
+        </div>`
+
+    resetValues();
+}
+
+function startChronometer(){
 
     //Donde estamos haciendo click
     currentButton = event.target;
@@ -38,7 +55,7 @@ function starChronometer(){
         }
         secondsValue += 1;
         secondsSpan.textContent = formatValue(secondsValue);
-    },100);
+    },1000);
 }
 
 function stopChronometer() {     
@@ -58,12 +75,14 @@ function resetChronometer(){
 
 //------------------------------------------------------ Temporizador -------------------------------------------------------------//
 
+//boton para activar el temporizador
 let timerButton = document.querySelector("#timer-button");
 
 function exucuteTimer(){
     
     section.innerHTML = 
         `<h1 class="main-section__title" id="title">Timer</h1>
+        <h2 id="text"></h2>
         <p class="main-section__time"><span id="minutes">00</span>:<span id="seconds">00</span></p>
         <div class="main-section__buttons-box">
             <form onsubmit="startTimer()">
@@ -72,9 +91,8 @@ function exucuteTimer(){
                 <button type="submit" class="main-section__buttons">Start</button>
             </form>
         </div>`
-
-    secondsSpan = document.querySelector('#seconds');
-    minutesSpan = document.querySelector('#minutes');
+    
+    resetValues();
 }
 function startTimer(){
     event.preventDefault();
@@ -90,13 +108,55 @@ function startTimer(){
         secondsValue -= 1;
         if(secondsValue === -1){
             secondsValue = 59;
-            minutes -= 1;
+            minutesValue -= 1;
         }
         if(minutesValue === 0 && secondsValue === 0){
             clearInterval(currentInterval);
+            const text = document.querySelector("#text");
+            text.textContent = "El tiempo del timer termino";
         }
         minutesSpan.textContent = formatValue(minutesValue);
         secondsSpan.textContent = formatValue(secondsValue);
+    },1000)
+}
+
+//-------------------------------------------------------------- Pomodoro ---------------------------------------------------------//
+
+//boton para activar el pomodoro
+let pomodoroButton = document.querySelector("#pomodoro-button");
+
+function exucutePomodoro(){
+    
+    section.innerHTML = 
+        `<h1 class="main-section__title" id="title">Pomodoro</h1>
+        <h2 id="text"></h2>
+        <p class="main-section__time"><span id="minutes">25</span>:<span id="seconds">00</span></p>
+        <div class="main-section__buttons-box">
+            <button onclick="startPomodoro()" class="main-section__buttons">Start</button>
+        </div>`
+    
+    resetValues();
+}
+
+function startPomodoro(){
+
+    minutesValue = 25;
+    secondsValue = 0;
+
+    currentInterval = setInterval(() => {
+        secondsValue -= 1;
+        if(secondsValue === -1){
+            secondsValue = 59;
+            minutesValue -= 1;
+        }
+        if(minutesValue === 0 && secondsValue === 0){
+            clearInterval(currentInterval);
+            const text = document.querySelector("#text");
+            text.textContent = "El tiempo termino";
+        }
+        minutesSpan.textContent = formatValue(minutesValue);
+        secondsSpan.textContent = formatValue(secondsValue);
+
     },1000)
 }
 
@@ -109,4 +169,9 @@ function formatValue(value){
     else{
         return "0"+value;
     }
+}
+
+function resetValues(){
+    secondsSpan = document.querySelector("#seconds");
+    minutesSpan = document.querySelector("#minutes");
 }
